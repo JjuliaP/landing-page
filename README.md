@@ -83,11 +83,11 @@ On the left side you can find a "Content" block. There you can find sections for
 - paragraph - text in paragraph,
 - buttonText text on the button.
 
-![Screenshot 2024-03-30 at 20.24.05.png](..%2F..%2F..%2F..%2Fvar%2Ffolders%2Fkk%2Fnfp6sbpd4wl0hfm14rbvy9640000gq%2FT%2FTemporaryItems%2FNSIRD_screencaptureui_NokJJ2%2FScreenshot%202024-03-30%20at%2020.24.05.png)
+![plot](./readme%20images/1.png)
 
 On the screen below you can find how all fields will look on the UI.
 
-![Screenshot 2024-03-30 at 20.36.26.png](..%2F..%2FPictures%2FScreenshot%202024-03-30%20at%2020.36.26.png)
+![plot](./readme%20images/2.png)
 
 When you update needed fields, you should click on the "Publish" button on the right bottom corner of the page.
 
@@ -96,11 +96,11 @@ When you update needed fields, you should click on the "Publish" button on the r
 - courses - number of courses,
 - hours - number of hours.
 
-![Screenshot 2024-03-30 at 20.33.58.png](..%2F..%2F..%2F..%2Fvar%2Ffolders%2Fkk%2Fnfp6sbpd4wl0hfm14rbvy9640000gq%2FT%2FTemporaryItems%2FNSIRD_screencaptureui_VV4w9d%2FScreenshot%202024-03-30%20at%2020.33.58.png)
+![plot](./readme%20images/3.png)
 
 On the screen below you can find how all fields will look on the UI.
 
-![Screenshot 2024-03-30 at 20.46.29.png](..%2F..%2FPictures%2FScreenshot%202024-03-30%20at%2020.46.29.png)
+![plot](./readme%20images/4.png)
 
 When you update needed fields, you should click on the "Publish" button on the right bottom corner of the page.
 
@@ -116,11 +116,11 @@ When you update needed fields, you should click on the "Publish" button on the r
 
 When you update needed fields, you should click on the "Publish" button on the right bottom corner of the page.
 
-![Screenshot 2024-03-30 at 20.56.20.png](..%2F..%2F..%2F..%2Fvar%2Ffolders%2Fkk%2Fnfp6sbpd4wl0hfm14rbvy9640000gq%2FT%2FTemporaryItems%2FNSIRD_screencaptureui_YxFMuR%2FScreenshot%202024-03-30%20at%2020.56.20.png)
+![plot](./readme%20images/5.png)
 
 On the screen below you can find how all fields will look on the UI.
 
-![Screenshot 2024-03-30 at 20.56.47.png](..%2F..%2FPictures%2FScreenshot%202024-03-30%20at%2020.56.47.png)
+![plot](./readme%20images/6.png)
 
 ## Results
 
