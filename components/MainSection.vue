@@ -1,104 +1,38 @@
 <script lang="ts" setup>
 
+import {onMounted} from "vue";
 import CorporateBundle from "~/components/CorporateBundle.vue";
 import Workshop from "~/components/Workshop.vue";
-import LeafIcon from "@/assets/images/leaf.svg"
-import RocketIcon from "@/assets/images/rocket.svg"
-import BoltIcon from "@/assets/images/bolt.svg"
+import type {HeroData} from "~/types/heroData.type";
+import {getBundleAccessList, getCoursesData, getHeroData} from "~/lib/api";
+import type {CourseData} from "~/types/courseData.type";
+import type {BundleAccess} from "~/types/bundleAccess.type";
 
-const checkboxList1:{
-  icon: 'check'| 'cross',
-  text: string,
-  class?: string,
-}[] = [
-  {
-    icon: 'check',
-    text: 'All Video Courses',
-  },
-  {
-    icon: 'check',
-    text: 'Vue.Js Master class',
-  },
-  {
-    icon: 'check',
-    text: 'Developer assist Slack channel',
-  },
-  {
-    icon: 'cross',
-    text:'Live Weekly QnA'
-  },
-  {
-    icon: 'cross',
-    text:'Live Weekly QnA'
-  }
-];
-const checkboxList2:{
-  icon: 'check'| 'cross',
-  text: string,
-  class?: string,
-}[] = [
-  {
-    icon: 'check',
-    text: 'All Video Courses',
-  },
-  {
-    icon: 'check',
-    text: 'Vue.Js Master class',
-  },
-  {
-    icon: 'check',
-    text: 'Developer assist Slack channel',
-  },
-  {
-    icon: 'check',
-    text:'Live Weekly QnA',
-    class:'font-bold'
-  },
-  {
-    icon: 'check',
-    text:'1 x ws ticket per license',
-    class:'font-bold'
-  }
-];
-const checkboxList3:{
-  icon: 'check'| 'cross',
-  text: string,
-  class?: string,
-}[] = [
-  {
-    icon: 'check',
-    text: 'All Video Courses',
-  },
-  {
-    icon: 'check',
-    text: 'Vue.Js Master class',
-  },
-  {
-    icon: 'check',
-    text: 'Developer assist Slack channel',
-  },
-  {
-    icon: 'check',
-    text:'Live Weekly QnA',
-  },
-  {
-    icon: 'check',
-    text:'4 x Virtual Workshop of your choice',
-    class:'font-bold'
-  }
-]
+let heroData = ref<HeroData[]>();
+let coursesData = ref<CourseData[]>();
+let bundlesList = ref<BundleAccess[]>();
+
+onMounted(async ()=>{
+  heroData.value = await getHeroData();
+  coursesData.value = await getCoursesData();
+  bundlesList.value = (await getBundleAccessList()).sort((a, b) => a.order - b.order);
+})
+
 </script>
 
 <template>
   <main class="flex flex-col sm:mx-4 md:mt-12 lg:mt-0">
     <section class="flex lg:flex-row sm:flex-col md:flex-col lg:gap-14 sm:gap-12 justify-center md:max-w-[602px] lg:max-w-full md:m-auto">
       <section class="lg:gap-14 sm:gap-6 flex flex-col items-start justify-center lg:max-w-[567px]">
-        <h1 class="font-rubik md:text-5xl font-bold leading-[71.1px] sm:text-4xl text-white sm:text-center sm:m-auto lg:m-0">Complete
-          <span class="text-green">Vue.js training</span>
-          solutions for companies</h1>
-        <p class="font-rubik sm:text-base lg:text-2xl font-normal leading-[30px] text-lightWhite sm:text-center lg:text-left">Training solutions designed for companies, agencies and organisations with developers using
-          or who are considering using the Vue.js framework</p>
-        <button class="py-5 px-10 bg-green text-dark font-rubik text-base font-medium leading-[19px] text-center rounded-[10px] sm:m-auto lg:m-0">Talk to Sales</button>
+        <h1 class="font-rubik md:text-5xl font-bold leading-[71.1px] sm:text-4xl text-white sm:text-center sm:m-auto lg:m-0">
+          {{heroData?.[0].titleFirstPart}}
+          <span class="text-green">{{heroData?.[0].highlightedTitle}}</span>
+          {{heroData?.[0].titleLastPart}}</h1>
+        <p class="font-rubik sm:text-base lg:text-2xl font-normal leading-[30px] text-lightWhite sm:text-center lg:text-left">
+          {{heroData?.[0].paragraph}}</p>
+        <button class="py-5 px-10 bg-green text-dark font-rubik text-base font-medium leading-[19px] text-center rounded-[10px] sm:m-auto lg:m-0">
+          {{heroData?.[0].buttonText}}
+        </button>
       </section>
       <img alt="people" src="@/assets/images/header-people.svg">
     </section>
@@ -125,21 +59,21 @@ const checkboxList3:{
         </section>
         <section class="flex flex-row lg:gap-16 sm:gap-6 training-solutions-numbers sm:justify-center">
           <section class="flex flex-col lg:gap-2.5 sm:gap-3">
-            <p class="font-color-gradient lg:text-5xl sm:text-[64px] sm:leading-[75px] font-medium lg:leading-[107px] text-center font-rubik">763</p>
+            <p class="font-color-gradient lg:text-5xl sm:text-[64px] sm:leading-[75px] font-medium lg:leading-[107px] text-center font-rubik">{{coursesData?.[0].video}}</p>
             <div class="flex flex-row gap-2.5 justify-center">
               <img alt="video" src="@/assets/images/video-icon.svg">
               <span class="font-rubik text-sm font-normal leading-[17px] text-left text-lightWhite">Video lessons</span>
             </div>
           </section>
           <section class="flex flex-col  gap-2.5">
-            <p class="font-color-gradient lg:text-5xl sm:text-[64px] sm:leading-[75px] font-medium lg:leading-[107px] text-center font-rubik">40</p>
+            <p class="font-color-gradient lg:text-5xl sm:text-[64px] sm:leading-[75px] font-medium lg:leading-[107px] text-center font-rubik">{{coursesData?.[0].courses}}</p>
             <div class="flex flex-row gap-2.5 justify-center">
               <img alt="book" src="@/assets/images/book-icon.svg">
               <span class="font-rubik text-sm font-normal leading-[17px] text-left text-lightWhite">Courses</span>
             </div>
           </section>
           <section class="flex flex-col gap-2.5">
-            <p class="font-color-gradient lg:text-5xl sm:text-[64px] sm:leading-[75px] font-medium lg:leading-[107px] text-center font-rubik">64</p>
+            <p class="font-color-gradient lg:text-5xl sm:text-[64px] sm:leading-[75px] font-medium lg:leading-[107px] text-center font-rubik">{{coursesData?.[0].hours}}</p>
             <div class="flex flex-row gap-2.5 justify-center">
               <img alt="clock" src="@/assets/images/clock-icon.svg">
               <span class="font-rubik text-sm font-normal leading-[17px] text-left text-lightWhite">15 Hours</span>
@@ -153,20 +87,9 @@ const checkboxList3:{
       <h1 class="text-center font-rubik md:text-5xl font-bold sm:leading-[47px] md:leading-[71.1px] sm:text-10 lg:max-w-[752px] text-lightWhite lg:mb-[120px] sm:mb-14">Discounted <span class="font-color-gradient">Corporate Training</span>  Bundles</h1>
       <section class="flex lg:flex-row sm:flex-col justify-center lg:gap-10 sm:gap-6">
         <CorporateBundle
-            title="Basic"
-            :title-icon="LeafIcon"
-            :checkbox-list="checkboxList1"
-        ></CorporateBundle>
-        <CorporateBundle
-            title="Professional"
-            :title-icon="RocketIcon"
-            :checkbox-list="checkboxList2"
-            :showMasterclass="true"
-        ></CorporateBundle>
-        <CorporateBundle
-            title="Basic"
-            :title-icon="BoltIcon"
-            :checkbox-list="checkboxList3"
+            v-for="(bundle, index) in bundlesList"
+            :key="index"
+            :data = bundle
         ></CorporateBundle>
       </section>
     </section>
