@@ -1,14 +1,7 @@
 <script setup lang="ts">
-defineProps<{
-  title: string,
-  titleIcon:string,
-  checkboxList: {
-    icon: 'check'| 'cross',
-    text: string,
-    class?: string,
-  }[],
-  showMasterclass?: boolean
-}>();
+import type {BundleAccess} from "~/types/bundleAccess.type";
+
+defineProps<{ data: BundleAccess }>();
 
 const rangeValue = ref(12);
 
@@ -21,26 +14,26 @@ function addColor(event: any): void{
 <template>
 <section class="flex flex-col bundle-container bg-greyOpacity90 px-6 py-10 lg:min-w-[370px] md:min-w-[640px] rounded-[30px] h-fit">
   <div class="flex flex-row gap-4 mb-10">
-    <img :src=titleIcon alt="icon">
-    <h5 class="text-lg font-semibold leading-7 text-left font-rubik text-lightWhite">{{title}}</h5>
+    <img :src=data.icon alt="icon">
+    <h5 class="text-lg font-semibold leading-7 text-left font-rubik text-lightWhite">{{data.title}}</h5>
   </div>
   <div class="checkboxes-container">
     <p class="desktopP2 mb-6 text-green">Includes 1 year access to:</p>
 
     <div class="gap-4 flex flex-col">
       <div class="flex flex-row gap-4"
-           v-for="(checkbox, index) in checkboxList"
+           v-for="(checkbox, index) in data.data"
            :key="index"
-           :class="{'opacity-20': checkbox.icon === 'cross'}">
-        <img src="@/assets/images/check.svg" alt="check" v-if="checkbox.icon === 'check'">
-        <img src="@/assets/images/cross.svg" alt="cross" v-if="checkbox.icon === 'cross'">
-        <p class="desktopP3 w-full text-lightWhite" :class="checkbox?.class">{{ checkbox.text }}</p>
-        <img src="@/assets/images/info.svg" alt="info" v-if="checkbox.icon === 'check'">
+           :class="{'opacity-20': !checkbox.isIncluded}">
+        <img src="@/assets/images/check.svg" alt="check" v-if="checkbox.isIncluded">
+        <img src="@/assets/images/cross.svg" alt="cross" v-if="!checkbox.isIncluded">
+        <p class="font-rubik text-base leading-5 w-full text-lightWhite" :class="checkbox?.isBold ? 'font-bold' : 'font-normal'">{{ checkbox.name }}</p>
+        <img src="@/assets/images/info.svg" alt="info" v-if="checkbox.isIncluded">
       </div>
     </div>
   </div>
 
-  <div v-if="showMasterclass" class="flex mt-6 rounded-lg bg-greenOpacity20 py-4 px-6">
+  <div v-if="data.showMasterclass" class="flex mt-6 rounded-lg bg-greenOpacity20 py-4 px-6">
     <img src="@/assets/images/masterclass.svg" alt="masterclass" class="mr-4">
     <div class="flex flex-col">
       <span class="text-darkGrey font-rubik font-medium text-sm leading-6">Enough time to watch:</span>
