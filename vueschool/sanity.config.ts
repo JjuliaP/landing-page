@@ -7,8 +7,8 @@ export default defineConfig({
   name: 'default',
   title: 'VueSchool',
 
-  projectId: '50habqj7',
-  dataset: 'production',
+  dataset: process.env.SANITY_DATASET_NAME || '',
+  projectId: process.env.SANITY_PROJECT_ID || '' ,
 
   plugins: [structureTool(), visionTool()],
 
